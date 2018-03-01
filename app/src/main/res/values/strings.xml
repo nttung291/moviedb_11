@@ -1,3 +1,34 @@
 <resources>
-    <string name="app_name">MovieDB</string>
+    <string name="app_name">Movie DB</string>
+    <!-- Section start -->
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <!-- Section end -->
+
+    <!-- Serching start -->
+    <string name="search_title">Searching here...</string>
+    <string name="action_example">Example action</string>
+    <string name="action_settings">Settings</string>
+    <!-- Serching end -->
+
+    <!-- Navigator drawer start -->
+    <string name="company">Framgia INC.</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_favorite">Favorite</string>
+    <string name="nav_genres">Genres</string>
+    <string name="nav_comunicate">Communicate</string>
+    <string name="nav_comunicate_aboutus">About us</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <!-- Navigator drawer end -->
+
+    <!-- Mainscreen fragment name  start -->
+    <string name="mainscreen_nowplaying">Now Playing</string>
+    <string name="mainscreen_popular">Popular</string>
+    <string name="mainscreen_upcoming">Up Coming</string>
+    <string name="mainscrren_toprate">Top rate</string>
+    <!-- Mainscreen fragment name  start -->
+
 </resources>
+
