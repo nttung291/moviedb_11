@@ -32,7 +32,25 @@
             app:tabTextAppearance="@style/MyCustomTabText"
             app:tabTextColor="@color/color_white"
             app:tabSelectedTextColor="@color/color_outrageous_orange"
-            app:tabIndicatorColor="@color/color_outrageous_orange"/>
+            app:tabIndicatorColor="@color/color_outrageous_orange" >
+        <android.support.design.widget.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mainscreen_nowplaying" />
+        <android.support.design.widget.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mainscreen_popular" />
+        <android.support.design.widget.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mainscreen_upcoming" />
+        <android.support.design.widget.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mainscrren_toprate" />
+        </android.support.design.widget.TabLayout>
+
         <android.support.v4.view.ViewPager
             android:id="@+id/view_pager"
             android:layout_below="@id/tab_layout"
