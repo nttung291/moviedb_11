@@ -6,7 +6,7 @@ package com.framgia.moviedb.screen.basefragment;
  */
 public abstract class BaseFragmentPresenter implements BaseFragmentContract.Presenter {
 
-    private final BaseFragmentContract.View mView;
+    protected final BaseFragmentContract.View mView;
 
     public BaseFragmentPresenter(BaseFragmentContract.View view) {
         mView = view;

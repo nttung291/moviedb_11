@@ -28,7 +28,14 @@
     <string name="mainscreen_popular">Popular</string>
     <string name="mainscreen_upcoming">Up Coming</string>
     <string name="mainscrren_toprate">Top rate</string>
+    <string name="msg_can_not_get_data">Can not get data</string>
     <!-- Mainscreen fragment name  start -->
 
+    <!-- Detail Film name  start -->
+    <string name="detail_overview">Overview</string>
+    <string name="detail_genres">Genres</string>
+    <string name="detail_actor">Actor</string>
+    <string name="detail_company">Company</string>
+    <!-- Detail Film name  end -->
 </resources>
 
