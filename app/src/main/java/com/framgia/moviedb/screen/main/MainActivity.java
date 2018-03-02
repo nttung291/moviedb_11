@@ -17,6 +17,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import com.framgia.moviedb.R;
 import com.framgia.moviedb.adapter.ViewPagerAdapter;
+import com.framgia.moviedb.untils.Constant;
 
 /**
  * Main Screen.
@@ -44,7 +45,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
         mPresenter = new MainPresenter();
         mPresenter.setView(this);
-
     }
 
     private void initToolbar() {
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(viewPagerAdapter);
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
-
+        mViewPager.setOffscreenPageLimit(Constant.VIEWPAGER_NUMBER);
     }
 
     @Override

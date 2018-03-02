@@ -13,7 +13,7 @@ import static com.framgia.moviedb.untils.Constant.VIEWPAGER_NUMBER;
 import static java.lang.annotation.RetentionPolicy.SOURCE;
 
 /**
- * Created by Nttung PC on 10/15/2017.
+ * Created by nttungg on 03/03/18.
  */
 
 public class ViewPagerAdapter extends FragmentPagerAdapter {
@@ -24,8 +24,6 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     public static final int FRAGMENT_POPULAR = 1;
     public static final int FRAGMENT_UP_COMING = 2;
     public static final int FRAGMENT_TOP_RATE = 3;
-    
-    @FrangmentMode int mCurrentFragent = FRAGMENT_NOW_PLAYING;
 
     public ViewPagerAdapter(FragmentManager fm) {
         super(fm);
@@ -33,15 +31,15 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        switch (mCurrentFragent){
+        switch (position){
             case FRAGMENT_NOW_PLAYING:
-                return new NowPlayingFragment();
+                return NowPlayingFragment.newInstance();
             case FRAGMENT_POPULAR:
-                return new PopularFragment();
+                return PopularFragment.newInstance();
             case FRAGMENT_UP_COMING:
-                return new UpComingFragment();
+                return UpComingFragment.newInstance();
             case FRAGMENT_TOP_RATE :
-                return new TopRateFragment();
+                return TopRateFragment.newInstance();
         }
         return null;
     }
@@ -49,14 +47,5 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         return VIEWPAGER_NUMBER;
-    }
-
-    @FrangmentMode
-    public int getCurrentFragment() {
-        return mCurrentFragent;
-    }
-
-    public void setCurrentFragment(@FrangmentMode int currentFragment) {
-        mCurrentFragent = currentFragment;
     }
 }

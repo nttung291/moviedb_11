@@ -25,6 +25,10 @@ public interface BaseFragmentContract {
      * Presenter.
      */
     interface Presenter extends BasePresenter {
-        void getData();
+        void getData(int page);
+
+        void requestMoreData();
+
+        void setPageIfLoadFailed();
     }
 }

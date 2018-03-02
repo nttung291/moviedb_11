@@ -14,7 +14,6 @@ import com.framgia.moviedb.model.Movie;
 import com.framgia.moviedb.screen.BaseRecyclerViewAdapter;
 import com.framgia.moviedb.untils.Constant;
 import com.framgia.moviedb.untils.Utils;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,14 +23,16 @@ public class MovieAdapter extends BaseRecyclerViewAdapter<MovieAdapter.ViewHolde
 
     public MovieAdapter(@NonNull Context context) {
         super(context);
+
     }
 
-    public void replaceData(@NonNull List<Movie> movies) {
-        if(movies != null){
-            mMovies.clear();
+    public void replaceData(@NonNull List<Movie> movies){
+        if (mMovies == null) {
+            mMovies = (ArrayList<Movie>) movies;
+        } else {
             mMovies.addAll(movies);
-            notifyDataSetChanged();
         }
+        notifyDataSetChanged();
     }
 
     @Override
