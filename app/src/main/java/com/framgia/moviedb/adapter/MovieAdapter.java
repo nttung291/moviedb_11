@@ -8,10 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import com.bumptech.glide.Glide;
 import com.framgia.moviedb.R;
 import com.framgia.moviedb.model.Movie;
 import com.framgia.moviedb.screen.BaseRecyclerViewAdapter;
+import com.framgia.moviedb.untils.Constant;
+import com.framgia.moviedb.untils.Utils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,20 +54,30 @@ public class MovieAdapter extends BaseRecyclerViewAdapter<MovieAdapter.ViewHolde
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        private ImageView imageViewPoster;
-        private TextView textViewTitle;
-        private TextView textViewGenres;
-        private TextView textViewRate;
+        private ImageView mImageViewPoster;
+        private TextView mTextViewTitle;
+        private TextView mTextViewVote;
+        private TextView mTextViewRelease;
+        private TextView mTextViewRate;
         ViewHolder(View itemView) {
             super(itemView);
-            imageViewPoster = itemView.findViewById(R.id.iv_poster);
-            textViewTitle = itemView.findViewById(R.id.tv_filmname_item);
-            textViewGenres = itemView.findViewById(R.id.tv_genres_item);
-            textViewRate = itemView.findViewById(R.id.tv_rate_item);
+            mImageViewPoster = itemView.findViewById(R.id.image_poster);
+            mTextViewTitle = itemView.findViewById(R.id.text_filmtitle_item);
+            mTextViewRelease = itemView.findViewById(R.id.text_release_item);
+            mTextViewVote = itemView.findViewById(R.id.text_vote_count_item);
+            mTextViewRate = itemView.findViewById(R.id.text_rate_item);
         }
 
         public void bindData(Movie movie) {
-
+           if (movie != null){
+               Glide.with(getContext())
+                       .load(Constant.IMG_URL + movie.getPosterPath())
+                       .into(mImageViewPoster);
+               mTextViewTitle.setText(movie.getTitle());
+               mTextViewRelease.setText(Utils.dateFormat(movie.getReleaseDate()));
+               mTextViewVote.setText(movie.getVoteCount());
+               mTextViewRate.setText(Double.toString(movie.getVoteAverage()) + Constant.IMDB_RATE);
+           }
         }
     }
 }

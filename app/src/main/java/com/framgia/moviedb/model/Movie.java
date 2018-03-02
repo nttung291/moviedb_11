@@ -26,9 +26,10 @@ public class Movie implements Parcelable {
     private String mPosterPath;
     private String mBackdropPath;
     private String mReleaseDate;
+    private String mVoteCount;
 
     public Movie(int id, String title, String overview, double voteAverage, String posterPath,
-            String backdropPath, String releaseDate) {
+            String backdropPath, String releaseDate,String voteCount) {
         mId = id;
         mTitle = title;
         mOverview = overview;
@@ -36,6 +37,7 @@ public class Movie implements Parcelable {
         mPosterPath = posterPath;
         mBackdropPath = backdropPath;
         mReleaseDate = releaseDate;
+        mVoteCount = voteCount;
     }
 
     protected Movie(Parcel in) {
@@ -46,6 +48,7 @@ public class Movie implements Parcelable {
         mPosterPath = in.readString();
         mBackdropPath = in.readString();
         mReleaseDate = in.readString();
+        mVoteCount = in.readString();
     }
 
     public int getId() {
@@ -104,6 +107,10 @@ public class Movie implements Parcelable {
         mReleaseDate = releaseDate;
     }
 
+    public String getVoteCount() {
+        return mVoteCount;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -118,5 +125,6 @@ public class Movie implements Parcelable {
         dest.writeString(mPosterPath);
         dest.writeString(mBackdropPath);
         dest.writeString(mReleaseDate);
+        dest.writeString(mVoteCount);
     }
 }
