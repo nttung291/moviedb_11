@@ -1,11 +1,8 @@
 package com.framgia.moviedb.screen.basefragment;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
-import android.view.ViewGroup;
-
+import com.framgia.moviedb.model.Movie;
 import com.framgia.moviedb.screen.BasePresenter;
+import java.util.List;
 
 /**
  * This specifies the contract between the view and the presenter.
@@ -15,6 +12,9 @@ public interface BaseFragmentContract {
      * View.
      */
     interface View{
+        void onGetMovieSuccess(List<Movie> movies);
+
+        void onGetMovieFailure(String message);
 
     }
 
