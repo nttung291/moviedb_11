@@ -1,4 +1,7 @@
 package com.framgia.moviedb.screen.toprate;
+
+import com.framgia.moviedb.remote.MovieRemoteDataSource;
+import com.framgia.moviedb.remote.MovieReposity;
 import com.framgia.moviedb.screen.basefragment.BaseFragment;
 import com.framgia.moviedb.screen.basefragment.BaseFragmentContract;
 
@@ -7,8 +10,12 @@ import com.framgia.moviedb.screen.basefragment.BaseFragmentContract;
  */
 public class TopRateFragment extends BaseFragment {
 
+    public static BaseFragment newInstance() {
+        return new TopRateFragment();
+    }
     @Override
     protected BaseFragmentContract.Presenter getPresenter() {
-        return null;
+        MovieReposity reposity = new MovieReposity(new MovieRemoteDataSource());
+        return new TopRatePresenter(this, reposity);
     }
 }

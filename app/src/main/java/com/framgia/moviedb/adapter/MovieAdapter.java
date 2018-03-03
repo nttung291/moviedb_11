@@ -8,15 +8,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import com.bumptech.glide.Glide;
 import com.framgia.moviedb.R;
 import com.framgia.moviedb.model.Movie;
 import com.framgia.moviedb.screen.BaseRecyclerViewAdapter;
+import com.framgia.moviedb.untils.Constant;
+import com.framgia.moviedb.untils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MovieAdapter extends BaseRecyclerViewAdapter<MovieAdapter.ViewHolder> {
     private ArrayList<Movie> mMovies = new ArrayList<>();
+
     private LayoutInflater mLayoutInflater;
 
     public MovieAdapter(@NonNull Context context) {
@@ -53,18 +56,26 @@ public class MovieAdapter extends BaseRecyclerViewAdapter<MovieAdapter.ViewHolde
     class ViewHolder extends RecyclerView.ViewHolder {
         private ImageView imageViewPoster;
         private TextView textViewTitle;
-        private TextView textViewGenres;
+        private TextView textViewVote;
+        private TextView textViewRelease;
         private TextView textViewRate;
         ViewHolder(View itemView) {
             super(itemView);
             imageViewPoster = itemView.findViewById(R.id.iv_poster);
             textViewTitle = itemView.findViewById(R.id.tv_filmname_item);
-            textViewGenres = itemView.findViewById(R.id.tv_genres_item);
+            textViewRelease = itemView.findViewById(R.id.tv_release_item);
+            textViewVote = itemView.findViewById(R.id.tv_votecount_item);
             textViewRate = itemView.findViewById(R.id.tv_rate_item);
         }
 
         public void bindData(Movie movie) {
-
+            Glide.with(getContext())
+                    .load(Constant.IMG_URL + movie.getmPosterPath())
+                    .into(imageViewPoster);
+            textViewTitle.setText(movie.getmTitle());
+            textViewRelease.setText(Utils.dateFormat(movie.getmReleaseDate()));
+            textViewVote.setText(movie.getmVoteCount());
+            textViewRate.setText(Double.toString(movie.getmVoteAverage()) + Constant.IMDB_RATE);
         }
     }
 }
