@@ -1,15 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     tools:context="com.framgia.moviedb.screen.basefragment.BaseFragment">
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_mainscreen_film"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="@dimen/dp_5"/>
+        android:layout_margin="@dimen/dp_5" />
+
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/av_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/dp_8"
+        android:layout_marginEnd="@dimen/dp_8"
+        android:layout_marginStart="@dimen/dp_8"
+        app:indicatorColor="@color/color_white"
+        app:indicatorName="BallPulseIndicator"
+        app:layout_constraintBottom_toBottomOf="@+id/rv_mainscreen_film"
+        app:layout_constraintEnd_toEndOf="@+id/rv_mainscreen_film"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
