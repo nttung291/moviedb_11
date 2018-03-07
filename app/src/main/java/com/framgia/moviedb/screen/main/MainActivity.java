@@ -2,6 +2,7 @@ package com.framgia.moviedb.screen.main;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -17,6 +18,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import com.framgia.moviedb.R;
 import com.framgia.moviedb.adapter.ViewPagerAdapter;
+import com.framgia.moviedb.screen.genres.GenresActivity;
+import com.framgia.moviedb.untils.Constant;
 
 /**
  * Main Screen.
@@ -44,7 +47,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
         mPresenter = new MainPresenter();
         mPresenter.setView(this);
-
     }
 
     private void initToolbar() {
@@ -84,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(viewPagerAdapter);
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
-
+        mViewPager.setOffscreenPageLimit(Constant.VIEWPAGER_NUMBER);
     }
 
     @Override
@@ -129,6 +131,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
             case R.id.nav_favorite:
                 break;
             case R.id.nav_genres :
+                Intent mIntent = new Intent(this, GenresActivity.class);
+                this.startActivity(mIntent);
                 break;
         }
         DrawerLayout drawer =  findViewById(R.id.drawer_layout);
