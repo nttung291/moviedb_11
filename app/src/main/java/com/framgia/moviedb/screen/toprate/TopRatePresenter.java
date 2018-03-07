@@ -1,21 +1,47 @@
 package com.framgia.moviedb.screen.toprate;
 
+import com.framgia.moviedb.data.model.Movie;
+import com.framgia.moviedb.data.remote.MovieDataSource;
+import com.framgia.moviedb.data.remote.MovieReposity;
 import com.framgia.moviedb.screen.basefragment.BaseFragmentContract;
 import com.framgia.moviedb.screen.basefragment.BaseFragmentPresenter;
+import java.util.List;
 
 /**
  * Listens to user actions from the UI ({@link TopRateFragment}), retrieves the data and updates
  * the UI as required.
  */
 public class TopRatePresenter extends BaseFragmentPresenter {
+    private MovieReposity mReposity;
 
-    public TopRatePresenter(BaseFragmentContract.View view) {
+    protected TopRatePresenter(BaseFragmentContract.View view, MovieReposity reposity) {
         super(view);
+        mReposity = reposity;
     }
 
     @Override
-    public void getData() {
+    public void getData(int page) {
+        mReposity.getMovieTopRate(page, new MovieDataSource.Callback<List<Movie>>() {
+            @Override
+            public void onStartLoading() {
+                // no ops
+            }
 
+            @Override
+            public void onGetSuccess(List<Movie> data) {
+                mView.onGetMovieSuccess(data);
+            }
+
+            @Override
+            public void onGetFailure(String message) {
+                mView.onGetMovieFailure(message);
+            }
+
+            @Override
+            public void onComplete() {
+                // no ops
+            }
+        });
     }
 
     @Override
