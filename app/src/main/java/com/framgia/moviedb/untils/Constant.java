@@ -11,6 +11,7 @@ public final class Constant {
     }
 
     public static final int VIEWPAGER_NUMBER = 4;
+    public static final int DEFAULT_PAGE = 1;
     public static final String DATE_FORMAT_YYYY_MM_DD = "yyyy-MM-dd";
     public static final String DATE_FORMAT_DD_MM_YYYY = "dd/MM/yyyy";
     public static final String END_POINT_URL = "https://api.themoviedb.org/3/";
@@ -33,5 +34,8 @@ public final class Constant {
     public static final String SPACE="%20";
     public static final String IMDB_RATE=" IMDb";
     public static final String IMG_URL = "https://image.tmdb.org/t/p/w300_and_h450_bestv2/";
+    public static final int CONNECT_TIME_OUT = 10000;
+    public static final int READ_TIME_OUT = 15000;
+    public static final String REQUEST_METHOD = "GET";
 
 }
