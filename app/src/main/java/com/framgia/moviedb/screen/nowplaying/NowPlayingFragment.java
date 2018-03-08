@@ -1,7 +1,7 @@
 package com.framgia.moviedb.screen.nowplaying;
 
-import com.framgia.moviedb.remote.MovieRemoteDataSource;
-import com.framgia.moviedb.remote.MovieReposity;
+import com.framgia.moviedb.data.remote.MovieRemoteDataSource;
+import com.framgia.moviedb.data.remote.MovieReposity;
 import com.framgia.moviedb.screen.basefragment.BaseFragment;
 import com.framgia.moviedb.screen.basefragment.BaseFragmentContract;
 

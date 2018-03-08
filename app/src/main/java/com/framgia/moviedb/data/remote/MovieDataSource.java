@@ -1,6 +1,9 @@
-package com.framgia.moviedb.remote;
+package com.framgia.moviedb.data.remote;
 
-import com.framgia.moviedb.model.Movie;
+import com.framgia.moviedb.data.model.Actor;
+import com.framgia.moviedb.data.model.Company;
+import com.framgia.moviedb.data.model.Genres;
+import com.framgia.moviedb.data.model.Movie;
 import java.util.List;
 
 /**
@@ -27,4 +30,9 @@ public interface MovieDataSource {
 
     void getMovieUpComming(int page, Callback<List<Movie>> callback);
 
+    void getApiMovieDetail(int idMovie, int page, Callback<List<Company>> callBackCompany, Callback<List<Genres>> callBackGenres);
+
+    void getApiActorMovie(int idMovie,  Callback<List<Actor>> callback);
+
+    void getApiListGenres (Callback<List<Genres>> callback);
 }

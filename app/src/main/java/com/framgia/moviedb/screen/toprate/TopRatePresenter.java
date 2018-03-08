@@ -1,8 +1,8 @@
 package com.framgia.moviedb.screen.toprate;
 
-import com.framgia.moviedb.model.Movie;
-import com.framgia.moviedb.remote.MovieDataSource;
-import com.framgia.moviedb.remote.MovieReposity;
+import com.framgia.moviedb.data.model.Movie;
+import com.framgia.moviedb.data.remote.MovieDataSource;
+import com.framgia.moviedb.data.remote.MovieReposity;
 import com.framgia.moviedb.screen.basefragment.BaseFragmentContract;
 import com.framgia.moviedb.screen.basefragment.BaseFragmentPresenter;
 import java.util.List;

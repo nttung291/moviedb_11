@@ -1,4 +1,4 @@
-package com.framgia.moviedb.model;
+package com.framgia.moviedb.data.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

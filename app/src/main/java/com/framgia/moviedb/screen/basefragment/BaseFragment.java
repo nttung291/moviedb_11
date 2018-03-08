@@ -1,28 +1,27 @@
 package com.framgia.moviedb.screen.basefragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.framgia.moviedb.R;
-import com.framgia.moviedb.adapter.MovieAdapter;
-import com.framgia.moviedb.model.Movie;
+import com.framgia.moviedb.data.model.Movie;
 import com.framgia.moviedb.screen.EndScrollListener;
 import com.framgia.moviedb.screen.LoadMoreListener;
+import com.framgia.moviedb.screen.detailfilm.DetailFilmActivity;
 import com.framgia.moviedb.untils.Constant;
 import com.wang.avi.AVLoadingIndicatorView;
-
 import java.util.List;
 
 /**
  * BaseFragment Screen.
  */
-
-public abstract class BaseFragment extends Fragment implements BaseFragmentContract.View,LoadMoreListener{
+public abstract class BaseFragment extends Fragment implements BaseFragmentContract.View,LoadMoreListener
+        ,MovieAdapter.ItemClickListener{
     protected abstract BaseFragmentContract.Presenter getPresenter();
     private MovieAdapter mAdapter;
     private EndScrollListener mEndScrollListener;
@@ -37,7 +36,7 @@ public abstract class BaseFragment extends Fragment implements BaseFragmentContr
         View view = inflater.inflate(R.layout.fragment_base, container, false);
         RecyclerView  recyclerView = view.findViewById(R.id.recycler_film_mainscreen);
         mAVLoadingIndicatorView = view.findViewById(R.id.av_loading);
-        mAdapter = new MovieAdapter(getContext());
+        mAdapter = new MovieAdapter(getContext(),this);
         mEndScrollListener = new EndScrollListener(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(mAdapter);
@@ -72,7 +71,13 @@ public abstract class BaseFragment extends Fragment implements BaseFragmentContr
 
     @Override
     public void requestLoadMore() {
-        getPresenter().requestMoreData();
         showIndicator();
+        getPresenter().requestMoreData();
+    }
+    @Override
+    public void onItemClicked(Movie movie) {
+        Intent myIntent = new Intent(getContext(), DetailFilmActivity.class);
+        myIntent.putExtra(Constant.BUNDLE_ID_MOVIE, movie); //Optional parameters
+        this.startActivity(myIntent);
     }
 }

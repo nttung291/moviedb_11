@@ -12,6 +12,7 @@ public final class Constant {
 
     public static final int VIEWPAGER_NUMBER = 4;
     public static final int DEFAULT_PAGE = 1;
+    public static final String BUNDLE_ID_MOVIE = "KEY_ID_MOVIE";
     public static final String DATE_FORMAT_YYYY_MM_DD = "yyyy-MM-dd";
     public static final String DATE_FORMAT_DD_MM_YYYY = "dd/MM/yyyy";
     public static final String END_POINT_URL = "https://api.themoviedb.org/3/";
@@ -23,10 +24,13 @@ public final class Constant {
     public static final String MOVIE_NOW_PLAYING_PART = "movie/now_playing";
     public static final String MOVIE_TOP_RATE_PART = "movie/top_rated";
     public static final String MOVIE_UP_COMMING_PART = "movie/upcoming";
-    public static final String MOVIES_PART="movies";
+    public static final String MOVIES_PART="/movies/";
+    public static final String MOVIE_PART="/movie/";
     public static final String MOVIE_CREDITS="movie_credits";
-    public static final String MOVIE_DETAIL="/movie/";
+    public static final String ACTOR_CREDITS="/credits";
+    public static final String MOVIE_DETAIL="movie/";
     public static final String COMPANY_PART="company";
+    public static final String LIST_PART="list";
     public static final String ACTOR_PART="person";
     public static final String GENRE_PART="genre";
     public static final String SEARCH_MOVIE_PART="search/movie";

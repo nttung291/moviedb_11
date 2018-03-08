@@ -1,6 +1,6 @@
 package com.framgia.moviedb.screen.basefragment;
 
-import com.framgia.moviedb.model.Movie;
+import com.framgia.moviedb.data.model.Movie;
 import com.framgia.moviedb.screen.BasePresenter;
 import java.util.List;
 

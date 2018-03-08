@@ -1,4 +1,4 @@
-package com.framgia.moviedb.remote;
+package com.framgia.moviedb.data.remote;
 
 import android.os.AsyncTask;
 import com.framgia.moviedb.untils.Constant;
