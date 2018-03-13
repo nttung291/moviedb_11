@@ -40,7 +40,7 @@ final class DetailFilmPresenter implements DetailFilmContract.Presenter {
 
   @Override
   public void getData() {
-    mReposity.getApiMovieDetail(mMovie.getId(), Constant.DEFAULT_PAGE,
+    mReposity.getMovieDetail(mMovie.getId(), Constant.DEFAULT_PAGE,
             new MovieDataSource.Callback<List<Company>>() {
               @Override
               public void onStartLoading() {
@@ -79,7 +79,7 @@ final class DetailFilmPresenter implements DetailFilmContract.Presenter {
               public void onComplete() {
               }
             });
-    mReposity.getApiActorMovie(mMovie.getId(), new MovieDataSource.Callback<List<Actor>>() {
+    mReposity.getActorMovie(mMovie.getId(), new MovieDataSource.Callback<List<Actor>>() {
       @Override
       public void onStartLoading() {
       }

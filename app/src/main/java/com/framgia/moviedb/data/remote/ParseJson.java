@@ -1,12 +1,14 @@
 package com.framgia.moviedb.data.remote;
 
-import org.json.JSONException;
 import com.framgia.moviedb.data.model.Actor;
 import com.framgia.moviedb.data.model.Company;
 import com.framgia.moviedb.data.model.Genres;
 import com.framgia.moviedb.data.model.Movie;
+
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,13 +51,13 @@ public class ParseJson {
             String releaseDate = jsonObjectResult.getString(KEY_JSON_RELEASE_DATE);
             String votecount = jsonObjectResult.getString(KEY_JSON_VOTE_COUNT);
             Movie movie = new Movie(id, title, overview, voteAverage, posterPath, backdropPath,
-                    releaseDate,votecount);
+                    releaseDate, votecount);
             movieList.add(movie);
         }
         return movieList;
     }
 
-    public static List<Actor> getParseJsonActorMovie(String s) throws JSONException{
+    public static List<Actor> getParseJsonActorMovie(String s) throws JSONException {
         List<Actor> actorList = new ArrayList<>();
         JSONObject jsonObjectMain = new JSONObject(s);
         JSONArray jsonArrayGenres = jsonObjectMain.getJSONArray(KEY_JSON_OBJECT_CAST);
@@ -71,7 +73,7 @@ public class ParseJson {
         return actorList;
     }
 
-    public static List<Genres> getParseJsonGenres(String s) throws JSONException{
+    public static List<Genres> getParseJsonGenres(String s) throws JSONException {
         List<Genres> genresList = new ArrayList<>();
         JSONObject jsonObjectMain = new JSONObject(s);
         JSONArray jsonArrayGenres = jsonObjectMain.getJSONArray(KEY_JSON_OBJECT_GENRES);
@@ -85,7 +87,7 @@ public class ParseJson {
         return genresList;
     }
 
-    public static List<Company>  getParseJsonProductionCompanyOfMovie(String s) throws JSONException {
+    public static List<Company> getParseJsonProductionCompanyOfMovie(String s) throws JSONException {
         List<Company> companyList = new ArrayList<>();
         JSONObject jsonObjectMain = new JSONObject(s);
         JSONArray jsonArrayGenres = jsonObjectMain.getJSONArray(KEY_JSON_OBJECT_PRODUCTION_COMPANIES);
@@ -96,6 +98,27 @@ public class ParseJson {
             Company company = new Company(id, name);
             companyList.add(company);
         }
-        return  companyList;
+        return companyList;
+    }
+
+    public static List<Movie> getParseJsonMovieForActor(String s) throws JSONException {
+        List<Movie> movieList = new ArrayList<>();
+        JSONObject jsonObjectMain = new JSONObject(s);
+        JSONArray jsonArrayGenres = jsonObjectMain.getJSONArray(KEY_JSON_OBJECT_CAST);
+        for (int i = 0; i < jsonArrayGenres.length(); i++) {
+            JSONObject jsonObjectGenres = jsonArrayGenres.getJSONObject(i);
+            int id = jsonObjectGenres.getInt(KEY_JSON_ID);
+            String title = jsonObjectGenres.getString(KEY_JSON_TITLE);
+            String overview = jsonObjectGenres.getString(KEY_JSON_OVERVIEW);
+            double voteAverage = jsonObjectGenres.getDouble(KEY_JSON_VOTE_AVERAGE);
+            String posterPath = jsonObjectGenres.getString(KEY_JSON_POSTER_PATH);
+            String backdropPath = jsonObjectGenres.getString(KEY_JSON_BACKDROP_PATH);
+            String releaseDate = jsonObjectGenres.getString(KEY_JSON_RELEASE_DATE);
+            String votecount = jsonObjectGenres.getString(KEY_JSON_VOTE_COUNT);
+            Movie movie = new Movie(id, title, overview, voteAverage, posterPath, backdropPath,
+                    releaseDate, votecount);
+            movieList.add(movie);
+        }
+        return movieList;
     }
 }

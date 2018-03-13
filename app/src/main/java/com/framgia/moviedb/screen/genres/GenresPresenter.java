@@ -34,7 +34,7 @@ final class GenresPresenter implements GenresContract.Presenter {
 
   @Override
   public void getData() {
-    mReposity.getApiListGenres(new MovieDataSource.Callback<List<Genres>>() {
+    mReposity.getListGenres(new MovieDataSource.Callback<List<Genres>>() {
       @Override
       public void onStartLoading() {
       }

@@ -37,5 +37,9 @@
     <string name="detail_actor">Actor</string>
     <string name="detail_company">Company</string>
     <!-- Detail Film name  end -->
+
+    <!-- Search Film name  start -->
+    <string name="no_result">No Result...</string>
+    <!-- Search Film name  end -->
 </resources>
 
