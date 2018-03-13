@@ -1,14 +1,29 @@
 package com.framgia.moviedb.data.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by nttungg on 03-06-2018.
  */
 
-public class Actor {
+public class Actor implements Parcelable {
     private int mId;
     private String mName;
     private String mCharacter;
     private String mProfilePath;
+
+    public static final Creator<Actor> CREATOR = new Creator<Actor>() {
+        @Override
+        public Actor createFromParcel(Parcel in) {
+            return new Actor(in);
+        }
+
+        @Override
+        public Actor[] newArray(int size) {
+            return new Actor[size];
+        }
+    };
 
     public Actor(int id, String name, String character, String profilePath) {
         mId = id;
@@ -17,35 +32,39 @@ public class Actor {
         mProfilePath = profilePath;
     }
 
-    public int getId() {
-        return mId;
+    protected Actor(Parcel in) {
+        mId = in.readInt();
+        mName = in.readString();
+        mCharacter = in.readString();
+        mProfilePath = in.readString();
     }
 
-    public void setId(int id) {
-        mId = id;
+    public int getId() {
+        return mId;
     }
 
     public String getName() {
         return mName;
     }
 
-    public void setName(String name) {
-        mName = name;
-    }
-
     public String getCharacter() {
         return mCharacter;
-    }
-
-    public void setCharacter(String character) {
-        mCharacter = character;
     }
 
     public String getProfilePath() {
         return mProfilePath;
     }
 
-    public void setProfilePath(String profilePath) {
-        mProfilePath = profilePath;
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(mId);
+        parcel.writeString(mName);
+        parcel.writeString(mCharacter);
+        parcel.writeString(mProfilePath);
     }
 }

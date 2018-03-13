@@ -52,4 +52,24 @@ public class MovieReposity implements MovieDataSource {
     public void getApiListGenres(Callback<List<Genres>> callback) {
         mMovieDataSource.getApiListGenres(callback);
     }
+
+    @Override
+    public void getApiListMoviesGenres(int idGenres, int page, Callback<List<Movie>> callback) {
+        mMovieDataSource.getApiListMoviesGenres(idGenres,page,callback);
+    }
+
+    @Override
+    public void getApiListMoviesActor(int idActor, int page, Callback<List<Movie>> callback) {
+        mMovieDataSource.getApiListMoviesActor(idActor,page,callback);
+    }
+
+    @Override
+    public void getApiListMoviesCompany(int idCompany, int page, Callback<List<Movie>> callback) {
+        mMovieDataSource.getApiListMoviesCompany(idCompany,page,callback);
+    }
+
+    @Override
+    public void getApiMoviesSearch(String query, int page, Callback<List<Movie>> callback) {
+        mMovieDataSource.getApiMoviesSearch(query,page,callback);
+    }
 }

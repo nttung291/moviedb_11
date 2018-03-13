@@ -1,12 +1,8 @@
 package com.framgia.moviedb.data.remote;
 
 import android.content.res.Resources;
-
 import com.framgia.moviedb.BuildConfig;
 import com.framgia.moviedb.R;
-import com.framgia.moviedb.data.model.Actor;
-import com.framgia.moviedb.data.model.Company;
-import com.framgia.moviedb.data.model.Genres;
 import com.framgia.moviedb.data.model.Movie;
 import com.framgia.moviedb.untils.Constant;
 import org.json.JSONException;
@@ -20,7 +16,6 @@ public class MovieRemoteDataSource implements MovieDataSource {
 
     @Override
     public void getMoviePopular(int page, final Callback<List<Movie>> callback) {
-
         StringBuilder url = new StringBuilder(Constant.END_POINT_URL)
                 .append(Constant.MOVIE_POPULAR_PART)
                 .append("?")
@@ -152,6 +147,103 @@ public class MovieRemoteDataSource implements MovieDataSource {
         loadGenresAsync(url.toString(),callback);
     }
 
+    @Override
+    public void getApiListMoviesGenres(int idGenres, int page, Callback<List<Movie>> callback) {
+        StringBuilder url = new StringBuilder(Constant.END_POINT_URL)
+                .append(Constant.GENRE_PART)
+                .append("/")
+                .append(idGenres)
+                .append(Constant.MOVIES_PART)
+                .append("?")
+                .append(Constant.API_PART)
+                .append("=")
+                .append(BuildConfig.API_KEY)
+                .append("&")
+                .append(Constant.LANGUAGE_PART)
+                .append("=")
+                .append(Constant.LANGUAGE)
+                .append("&")
+                .append(Constant.PAGE_PART)
+                .append("=")
+                .append(String.valueOf(page))
+                .append("&")
+                .append(Constant.INCLUDE_ADULT)
+                .append("?")
+                .append(Constant.SORT_BY);
+
+        loadMovieAsync(url.toString(),callback);
+    }
+
+    @Override
+    public void getApiListMoviesActor(int idActor, int page, Callback<List<Movie>> callback) {
+        StringBuilder url = new StringBuilder(Constant.END_POINT_URL)
+                .append(Constant.ACTOR_PART)
+                .append(idActor)
+                .append(Constant.MOVIE_CREDITS)
+                .append("?")
+                .append(Constant.API_PART)
+                .append("=")
+                .append(BuildConfig.API_KEY)
+                .append("&")
+                .append(Constant.LANGUAGE_PART)
+                .append("=")
+                .append(Constant.LANGUAGE)
+                .append("&")
+                .append(Constant.PAGE_PART)
+                .append("=")
+                .append(String.valueOf(page));
+
+        loadMovieForActorAsync(url.toString(),callback);
+    }
+
+    @Override
+    public void getApiListMoviesCompany(int idCompany, int page, Callback<List<Movie>> callback) {
+        StringBuilder url = new StringBuilder(Constant.END_POINT_URL)
+                .append(Constant.COMPANY_PART)
+                .append(idCompany)
+                .append(Constant.MOVIES_PART)
+                .append("?")
+                .append(Constant.API_PART)
+                .append("=")
+                .append(BuildConfig.API_KEY)
+                .append("&")
+                .append(Constant.LANGUAGE_PART)
+                .append("=")
+                .append(Constant.LANGUAGE)
+                .append("&")
+                .append(Constant.PAGE_PART)
+                .append("=")
+                .append(String.valueOf(page));
+
+        loadMovieAsync(url.toString(),callback);
+    }
+
+    @Override
+    public void getApiMoviesSearch(String query, int page, Callback<List<Movie>> callback) {
+        StringBuilder url = new StringBuilder(Constant.END_POINT_URL)
+                .append(Constant.SEARCH_MOVIE_PART)
+                .append("?")
+                .append(Constant.API_PART)
+                .append("=")
+                .append(BuildConfig.API_KEY)
+                .append("&")
+                .append(Constant.LANGUAGE_PART)
+                .append("=")
+                .append(Constant.LANGUAGE)
+                .append("&")
+                .append(Constant.QUERY_PART)
+                .append("=")
+                .append(query)
+                .append("&")
+                .append(Constant.PAGE_PART)
+                .append("=")
+                .append(String.valueOf(page))
+                .append("&")
+                .append(Constant.INCLUDE_ADULT);
+
+        loadMovieAsync(url.toString(),callback);
+    }
+
     private void loadMovieAsync(String url, final Callback<List<Movie>> callback){
         new FetchDataAsync(new Callback<String>() {
             @Override
@@ -278,6 +370,40 @@ public class MovieRemoteDataSource implements MovieDataSource {
                         return;
                     }
                     callback.onGetSuccess(ParseJson.getParseJsonGenres(data));
+                } catch (JSONException e) {
+                    callback.onGetFailure(e.getMessage());
+                }
+            }
+
+            @Override
+            public void onGetFailure(String message) {
+                callback.onGetFailure(message);
+            }
+
+            @Override
+            public void onComplete() {
+                callback.onComplete();
+            }
+
+        }).execute(url);
+    }
+
+    private void loadMovieForActorAsync(String url, final Callback<List<Movie>> callback){
+        new FetchDataAsync(new Callback<String>() {
+            @Override
+            public void onStartLoading() {
+                callback.onStartLoading();
+            }
+
+            @Override
+            public void onGetSuccess(String data) {
+                try {
+                    if (data == null) {
+                        callback.onGetFailure(
+                                Resources.getSystem().getString(R.string.msg_can_not_get_data));
+                        return;
+                    }
+                    callback.onGetSuccess(ParseJson.getParseJsonMovieForActor(data));
                 } catch (JSONException e) {
                     callback.onGetFailure(e.getMessage());
                 }
