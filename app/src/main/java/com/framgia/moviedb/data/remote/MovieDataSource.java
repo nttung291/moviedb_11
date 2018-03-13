@@ -30,9 +30,17 @@ public interface MovieDataSource {
 
     void getMovieUpComming(int page, Callback<List<Movie>> callback);
 
-    void getApiMovieDetail(int idMovie, int page, Callback<List<Company>> callBackCompany, Callback<List<Genres>> callBackGenres);
+    void getMovieDetail(int idMovie, int page, Callback<List<Company>> callBackCompany, Callback<List<Genres>> callBackGenres);
 
-    void getApiActorMovie(int idMovie,  Callback<List<Actor>> callback);
+    void getActorMovie(int idMovie,  Callback<List<Actor>> callback);
 
-    void getApiListGenres (Callback<List<Genres>> callback);
+    void getListGenres (Callback<List<Genres>> callback);
+
+    void getListMoviesGenres (int idGenres, int page, Callback<List<Movie>> callback);
+
+    void getListMoviesActor (int idActor, int page, Callback<List<Movie>> callback);
+
+    void getListMoviesCompany (int idCompany, int page, Callback<List<Movie>> callback);
+
+    void getMoviesSearch(String query, int page, Callback<List<Movie>> callback);
 }

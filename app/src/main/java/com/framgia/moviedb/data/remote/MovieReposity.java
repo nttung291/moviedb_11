@@ -39,17 +39,37 @@ public class MovieReposity implements MovieDataSource {
     }
 
     @Override
-    public void getApiMovieDetail(int idMovie, int page, Callback<List<Company>> callBackCompany, Callback<List<Genres>> callBackGenres) {
-        mMovieDataSource.getApiMovieDetail(idMovie,page,callBackCompany,callBackGenres);
+    public void getMovieDetail(int idMovie, int page, Callback<List<Company>> callBackCompany, Callback<List<Genres>> callBackGenres) {
+        mMovieDataSource.getMovieDetail(idMovie,page,callBackCompany,callBackGenres);
     }
 
     @Override
-    public void getApiActorMovie(int idMovie, Callback<List<Actor>> callback) {
-        mMovieDataSource.getApiActorMovie(idMovie, callback);
+    public void getActorMovie(int idMovie, Callback<List<Actor>> callback) {
+        mMovieDataSource.getActorMovie(idMovie, callback);
     }
 
     @Override
-    public void getApiListGenres(Callback<List<Genres>> callback) {
-        mMovieDataSource.getApiListGenres(callback);
+    public void getListGenres(Callback<List<Genres>> callback) {
+        mMovieDataSource.getListGenres(callback);
+    }
+
+    @Override
+    public void getListMoviesGenres(int idGenres, int page, Callback<List<Movie>> callback) {
+        mMovieDataSource.getListMoviesGenres(idGenres,page,callback);
+    }
+
+    @Override
+    public void getListMoviesActor(int idActor, int page, Callback<List<Movie>> callback) {
+        mMovieDataSource.getListMoviesActor(idActor,page,callback);
+    }
+
+    @Override
+    public void getListMoviesCompany(int idCompany, int page, Callback<List<Movie>> callback) {
+        mMovieDataSource.getListMoviesCompany(idCompany,page,callback);
+    }
+
+    @Override
+    public void getMoviesSearch(String query, int page, Callback<List<Movie>> callback) {
+        mMovieDataSource.getMoviesSearch(query,page,callback);
     }
 }
