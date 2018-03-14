@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.framgia.moviedb.screen.favoritefilm.FavoriteFilmActivity;
 import com.framgia.moviedb.untils.Constant;
 
 import android.support.design.widget.NavigationView;
@@ -16,14 +17,13 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;;
-import android.util.Log;
+
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.framgia.moviedb.R;
 import com.framgia.moviedb.adapter.ViewPagerAdapter;
-import com.framgia.moviedb.screen.searchmovies.SearchMoviesActivity;
 import com.framgia.moviedb.screen.genres.GenresActivity;
 
 import static com.framgia.moviedb.screen.searchmovies.SearchMoviesActivity.getSearchIntent;
@@ -137,6 +137,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
             case R.id.nav_home:
                 break;
             case R.id.nav_favorite:
+                Intent intentFavorite = new Intent(this, FavoriteFilmActivity.class);
+                this.startActivity(intentFavorite);
                 break;
             case R.id.nav_genres:
                 this.startActivity(new Intent(this, GenresActivity.class));

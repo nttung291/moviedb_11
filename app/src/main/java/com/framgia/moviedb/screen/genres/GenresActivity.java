@@ -9,6 +9,7 @@ import android.view.View;
 
 import com.framgia.moviedb.R;
 import com.framgia.moviedb.data.model.Genres;
+import com.framgia.moviedb.untils.Utils;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.List;
@@ -77,6 +78,8 @@ public class GenresActivity extends AppCompatActivity
 
     @Override
     public void onGetGenresFailure(String message) {
+        showIndicator();
+        Utils.showMessageGetDataFailed(this, this);
     }
 
     @Override

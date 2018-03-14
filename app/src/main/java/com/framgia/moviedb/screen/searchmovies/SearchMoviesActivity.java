@@ -24,7 +24,6 @@ import com.framgia.moviedb.untils.Constant;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.List;
-
 import static com.framgia.moviedb.screen.detailfilm.DetailFilmActivity.getDetailIntent;
 
 /**
@@ -71,7 +70,7 @@ public class SearchMoviesActivity extends AppCompatActivity implements SearchMov
         mRecyclerView.setAdapter(mDisplayMoviesAdapter);
         mRecyclerView.addOnScrollListener(mEndScrollListener);
 
-        mPresenter.getData(mQuery, Constant.DEFAULT_PAGE);
+        mPresenter.getData(mQuery,Constant.DEFAULT_PAGE);
     }
 
     private void initToolbar() {

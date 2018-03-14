@@ -42,5 +42,18 @@
     <string name="no_result">No Result...</string>
     <string name="searching">Searching</string>
     <!-- Search Film name  end -->
+
+    <!-- Favorite Film name  start -->
+    <string name="favorite">My Favorite</string>
+    <string name="msg_id_movie_already_exists">Movie exists in list my favorite</string>
+    <string name="msg_had_delete">Movie is deleted in list my favorite</string>
+    <string name="msg_insert_success_to_list_my_favorite">Add success to list my favorite</string>
+    <string name="error_insert_failed">Add failed, please try again</string>
+    <string name="msg_delete_failed">Delete failed, please try again</string>
+    <!-- Favorite Film name  end -->
+
+    <!-- Video Film name  start -->
+    <string name="text_suggestions_movie">Suggestions Movie</string>
+    <!-- Video Film name  end -->
 </resources>
 

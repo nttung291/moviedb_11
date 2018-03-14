@@ -38,5 +38,4 @@ public class GenresDisplayMovieActivity extends DisplayMoviesActivity {
     public String initToolBarTitle() {
         return mGenres.getName();
     }
-
 }

@@ -14,6 +14,7 @@ import com.framgia.moviedb.screen.EndScrollListener;
 import com.framgia.moviedb.screen.LoadMoreListener;
 import com.framgia.moviedb.screen.detailfilm.DetailFilmActivity;
 import com.framgia.moviedb.untils.Constant;
+import com.framgia.moviedb.untils.Utils;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.List;
@@ -83,6 +84,7 @@ public abstract class DisplayMoviesActivity extends AppCompatActivity implements
 
     @Override
     public void onGetMovieFailure(String message) {
+        Utils.showMessageGetDataFailed(this, this);
     }
 
     @Override
