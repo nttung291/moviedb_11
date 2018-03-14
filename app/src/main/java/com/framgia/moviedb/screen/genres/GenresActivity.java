@@ -13,82 +13,84 @@ import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.List;
 
+import static com.framgia.moviedb.screen.genresdisplaymovie.GenresDisplayMovieActivity.getGenresIntent;
+
 /**
  * Genres Screen.
  */
-public class GenresActivity extends AppCompatActivity implements GenresContract.View,GenresFilmAdapter.ItemGenresClickListener{
+public class GenresActivity extends AppCompatActivity
+        implements GenresContract.View, GenresFilmAdapter.ItemGenresClickListener {
 
-  private  GenresContract.Presenter mPresenter;
-  private RecyclerView mRecyclerGenres;
-  private GenresFilmAdapter mGenresFilmAdapter;
-  private AVLoadingIndicatorView mAVLoadingIndicatorView;
-  private Toolbar mToolbar;
+    private GenresContract.Presenter mPresenter;
+    private RecyclerView mRecyclerGenres;
+    private GenresFilmAdapter mGenresFilmAdapter;
+    private AVLoadingIndicatorView mAVLoadingIndicatorView;
+    private Toolbar mToolbar;
 
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_genres);
-    mRecyclerGenres = findViewById(R.id.recycler_genres);
-    mAVLoadingIndicatorView = findViewById(R.id.av_loading_genres);
-    mToolbar = findViewById(R.id.toolbar_genres);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_genres);
+        mRecyclerGenres = findViewById(R.id.recycler_genres);
+        mAVLoadingIndicatorView = findViewById(R.id.av_loading_genres);
+        mToolbar = findViewById(R.id.toolbar_genres);
+        initToolbar();
+        mPresenter = new GenresPresenter();
+        mPresenter.setView(this);
+        mGenresFilmAdapter = new GenresFilmAdapter(this, this);
+        mRecyclerGenres.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerGenres.setAdapter(mGenresFilmAdapter);
+        showIndicator();
+        mPresenter.getData();
+    }
 
-    initToolbar();
+    public void initToolbar() {
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setTitle(R.string.nav_genres);
+        mToolbar.setTitleTextAppearance(this, R.style.FontTextAppearance);
+        mToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+    }
 
-    mPresenter = new GenresPresenter();
-    mPresenter.setView(this);
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mPresenter.onStart();
+    }
 
-    mGenresFilmAdapter = new GenresFilmAdapter(this,this);
-    mRecyclerGenres.setLayoutManager(new LinearLayoutManager(this));
-    mRecyclerGenres.setAdapter(mGenresFilmAdapter);
-    showIndicator();
-    mPresenter.getData();
-  }
+    @Override
+    protected void onStop() {
+        mPresenter.onStop();
+        super.onStop();
+    }
 
-  public void initToolbar(){
-    mToolbar.setTitleTextAppearance(this, R.style.FontTextAppearance);
-    mToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
-    mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        onBackPressed();
-      }
-    });
-    setSupportActionBar(mToolbar);
-  }
+    @Override
+    public void onGetGenresSuccess(List<Genres> genres) {
+        mGenresFilmAdapter.replaceData(genres);
+        hideIndicator();
+    }
 
-  @Override
-  protected void onStart() {
-    super.onStart();
-    mPresenter.onStart();
-  }
+    @Override
+    public void onGetGenresFailure(String message) {
+    }
 
-  @Override
-  protected void onStop() {
-    mPresenter.onStop();
-    super.onStop();
-  }
+    @Override
+    public void showIndicator() {
+        mAVLoadingIndicatorView.show();
+    }
 
-  @Override
-  public void onGetGenresSuccess(List<Genres> genres) {
-    mGenresFilmAdapter.replaceData(genres);
-    hideIndicator();
-  }
+    @Override
+    public void hideIndicator() {
+        mAVLoadingIndicatorView.hide();
+    }
 
-  @Override
-  public void onGetGenresFailure(String message) {
-  }
-
-  @Override
-  public void showIndicator() {
-    mAVLoadingIndicatorView.show();
-  }
-
-  @Override
-  public void hideIndicator() {
-    mAVLoadingIndicatorView.hide();
-  }
-
-  @Override
-  public void onItemGenresClicked(Genres genres) {
-  }
+    @Override
+    public void onItemGenresClicked(Genres genres) {
+        startActivity(getGenresIntent(this, genres));
+    }
 }

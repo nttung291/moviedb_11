@@ -4,6 +4,9 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+
+import com.framgia.moviedb.untils.Constant;
+
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
@@ -12,34 +15,40 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
-import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.Toolbar;;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+
 import com.framgia.moviedb.R;
 import com.framgia.moviedb.adapter.ViewPagerAdapter;
+import com.framgia.moviedb.screen.searchmovies.SearchMoviesActivity;
 import com.framgia.moviedb.screen.genres.GenresActivity;
-import com.framgia.moviedb.untils.Constant;
+
+import static com.framgia.moviedb.screen.searchmovies.SearchMoviesActivity.getSearchIntent;
 
 /**
  * Main Screen.
  */
 public class MainActivity extends AppCompatActivity implements MainContract.View
-        , NavigationView.OnNavigationItemSelectedListener {
+        , NavigationView.OnNavigationItemSelectedListener
+        , SearchView.OnQueryTextListener {
 
     private MainContract.Presenter mPresenter;
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
-    private Toolbar  mToolbar;
+    private Toolbar mToolbar;
+    private SearchView mSearchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mTabLayout =  findViewById(R.id.tab_layout);
-        mViewPager =  findViewById(R.id.view_pager);
-        mToolbar =  findViewById(R.id.toolbar);
+        mTabLayout = findViewById(R.id.tab_layout);
+        mViewPager = findViewById(R.id.view_pager);
+        mToolbar = findViewById(R.id.toolbar);
 
         initToolbar();
         initNavigator();
@@ -117,7 +126,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         if (id == R.id.action_search) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -125,17 +133,16 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
-        switch (id){
-            case R.id.nav_home :
+        switch (id) {
+            case R.id.nav_home:
                 break;
             case R.id.nav_favorite:
                 break;
-            case R.id.nav_genres :
-                Intent mIntent = new Intent(this, GenresActivity.class);
-                this.startActivity(mIntent);
+            case R.id.nav_genres:
+                this.startActivity(new Intent(this, GenresActivity.class));
                 break;
         }
-        DrawerLayout drawer =  findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -145,9 +152,22 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.option_menu, menu);
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-        searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
+        mSearchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        mSearchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        mSearchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
+        mSearchView.setOnQueryTextListener(this);
         return true;
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        mSearchView.clearFocus();
+        startActivity(getSearchIntent(this, query));
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        return false;
     }
 }
