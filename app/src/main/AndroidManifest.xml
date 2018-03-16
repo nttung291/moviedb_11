@@ -26,6 +26,19 @@
         <activity
             android:name=".screen.genres.GenresActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".screen.genresdisplaymovie.GenresDisplayMovieActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".screen.actordisplaymovies.ActorDisplayMoviesActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".screen.companydisplaymovies.CompanyDisplayMoviesActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".screen.searchmovies.SearchMoviesActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
+

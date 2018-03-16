@@ -1,5 +1,7 @@
 package com.framgia.moviedb.screen.detailfilm;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,20 +10,27 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.bumptech.glide.Glide;
 import com.framgia.moviedb.R;
 import com.framgia.moviedb.data.model.Actor;
 import com.framgia.moviedb.data.model.Company;
 import com.framgia.moviedb.data.model.Genres;
 import com.framgia.moviedb.data.model.Movie;
+import com.framgia.moviedb.screen.searchmovies.SearchMoviesActivity;
 import com.framgia.moviedb.untils.Constant;
+
 import java.util.List;
+
+import static com.framgia.moviedb.screen.actordisplaymovies.ActorDisplayMoviesActivity.getActorIntent;
+import static com.framgia.moviedb.screen.companydisplaymovies.CompanyDisplayMoviesActivity.getCompanyIntent;
+import static com.framgia.moviedb.screen.genresdisplaymovie.GenresDisplayMovieActivity.getGenresIntent;
 
 /**
  * DetailFilm Screen.
  */
 public class DetailFilmActivity extends AppCompatActivity implements DetailFilmContract.View,
-        GenresAdapter.ItemGenresClickListener,CompanyAdapter.ItemCompanyClickListener,ActorAdapter.ItemActorClickListener{
+        GenresAdapter.ItemGenresClickListener, CompanyAdapter.ItemCompanyClickListener, ActorAdapter.ItemActorClickListener {
 
     private DetailFilmContract.Presenter mPresenter;
     private Toolbar mToolbar;
@@ -36,6 +45,12 @@ public class DetailFilmActivity extends AppCompatActivity implements DetailFilmC
     private RecyclerView mRecyclerCompanies;
     private RecyclerView mRecyclerActor;
 
+    public static Intent getDetailIntent(Context context, Movie movie) {
+        Intent intent = new Intent(context, SearchMoviesActivity.class);
+        intent.putExtra(Constant.BUNDLE_ID_MOVIE, movie);
+        return intent;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,26 +62,23 @@ public class DetailFilmActivity extends AppCompatActivity implements DetailFilmC
         mRecyclerGenres = findViewById(R.id.recycler_genres_filmdetail);
         mRecyclerCompanies = findViewById(R.id.recycler_company_filmdetail);
         mRecyclerActor = findViewById(R.id.recycler_actor_detailfilm);
-
-        mMovie =  getIntent().getParcelableExtra(Constant.BUNDLE_ID_MOVIE);
-
+        mMovie = getIntent().getParcelableExtra(Constant.BUNDLE_ID_MOVIE);
         mPresenter = new DetailFilmPresenter(mMovie);
         mPresenter.setView(this);
-
         setAdapter();
         initUI();
     }
 
     private void setAdapter() {
-        mGenresAdapter = new GenresAdapter(this,this);
+        mGenresAdapter = new GenresAdapter(this, this);
         mRecyclerGenres.setAdapter(mGenresAdapter);
         mRecyclerGenres.setLayoutManager(
                 new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        mCompanyAdapter = new CompanyAdapter(this,this);
+        mCompanyAdapter = new CompanyAdapter(this, this);
         mRecyclerCompanies.setAdapter(mCompanyAdapter);
         mRecyclerCompanies.setLayoutManager(
                 new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        mActorAdapter = new ActorAdapter(this,this);
+        mActorAdapter = new ActorAdapter(this, this);
         mRecyclerActor.setAdapter(mActorAdapter);
         mRecyclerActor.setLayoutManager(
                 new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
@@ -84,7 +96,7 @@ public class DetailFilmActivity extends AppCompatActivity implements DetailFilmC
         super.onStop();
     }
 
-    void initUI(){
+    void initUI() {
         mToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,13 +150,16 @@ public class DetailFilmActivity extends AppCompatActivity implements DetailFilmC
 
     @Override
     public void onItemGenresClicked(Genres genres) {
+        startActivity(getGenresIntent(this, genres));
     }
 
     @Override
     public void onItemCompanyClicked(Company company) {
+        startActivity(getCompanyIntent(this, company));
     }
 
     @Override
     public void onItemActorClicked(Actor actor) {
+        startActivity(getActorIntent(this, actor));
     }
 }

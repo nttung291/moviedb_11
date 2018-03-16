@@ -37,6 +37,13 @@ public class DisplayMoviesAdapter extends BaseRecyclerViewAdapter<DisplayMoviesA
         notifyDataSetChanged();
     }
 
+    public void clearData() {
+        if (mMovies != null) {
+            mMovies.clear();
+            notifyDataSetChanged();
+        }
+    }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (mLayoutInflater == null) {

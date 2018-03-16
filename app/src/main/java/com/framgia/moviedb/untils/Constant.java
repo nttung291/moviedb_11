@@ -14,9 +14,9 @@ public final class Constant {
     public static final int DEFAULT_PAGE = 1;
     public static final int SPAN_COUNT = 2;
     public static final String BUNDLE_ID_MOVIE = "KEY_ID_MOVIE";
-    public static final String BUNDLE_ID_GENRES = "KEY_ID_GENRES";
-    public static final String BUNDLE_ID_ACTOR = "KEY_ID_ACTOR";
-    public static final String BUNDLE_ID_COMPANY = "KEY_ID_COMPANY";
+    public static final String EXTRA_GENRES = "KEY_ID_GENRES";
+    public static final String EXTRA_ACTOR = "KEY_ID_ACTOR";
+    public static final String EXTRA_COMPANY = "KEY_ID_COMPANY";
     public static final String BUNDLE_SEARCH = "KEY_SEACRH";
     public static final String BUNDLE_TYPE = "TYPE_ID";
     public static final String DATE_FORMAT_YYYY_MM_DD = "yyyy-MM-dd";

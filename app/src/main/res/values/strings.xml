@@ -40,6 +40,7 @@
 
     <!-- Search Film name  start -->
     <string name="no_result">No Result...</string>
+    <string name="searching">Searching</string>
     <!-- Search Film name  end -->
 </resources>
 
