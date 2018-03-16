@@ -32,6 +32,7 @@ public class ParseJson {
     private static final String KEY_JSON_CHARACTER = "character";
     private static final String KEY_JSON_PROFILE_PATH = "profile_path";
     private static final String KEY_JSON_VOTE_COUNT = "vote_count";
+    private static final String KEY_JSON_KEY_YOUTUBE = "key";
 
     private ParseJson() {
     }
@@ -120,5 +121,14 @@ public class ParseJson {
             movieList.add(movie);
         }
         return movieList;
+    }
+
+    public static String getParseJsonKeyYoutube(String s) throws JSONException {
+        JSONObject jsonObjectMain = new JSONObject(s);
+        JSONArray jsonArrayResult = jsonObjectMain.getJSONArray(KEY_JSON_OBJECT_RESULT);
+        int position = 1;
+        JSONObject jsonObjectResult = jsonArrayResult.getJSONObject(position);
+        String key = jsonObjectResult.getString(KEY_JSON_KEY_YOUTUBE);
+        return key;
     }
 }

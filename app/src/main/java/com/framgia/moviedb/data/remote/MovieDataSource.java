@@ -4,6 +4,7 @@ import com.framgia.moviedb.data.model.Actor;
 import com.framgia.moviedb.data.model.Company;
 import com.framgia.moviedb.data.model.Genres;
 import com.framgia.moviedb.data.model.Movie;
+
 import java.util.List;
 
 /**
@@ -32,15 +33,17 @@ public interface MovieDataSource {
 
     void getMovieDetail(int idMovie, int page, Callback<List<Company>> callBackCompany, Callback<List<Genres>> callBackGenres);
 
-    void getActorMovie(int idMovie,  Callback<List<Actor>> callback);
+    void getActorMovie(int idMovie, Callback<List<Actor>> callback);
 
-    void getListGenres (Callback<List<Genres>> callback);
+    void getListGenres(Callback<List<Genres>> callback);
 
-    void getListMoviesGenres (int idGenres, int page, Callback<List<Movie>> callback);
+    void getListMoviesGenres(int idGenres, int page, Callback<List<Movie>> callback);
 
-    void getListMoviesActor (int idActor, int page, Callback<List<Movie>> callback);
+    void getListMoviesActor(int idActor, int page, Callback<List<Movie>> callback);
 
-    void getListMoviesCompany (int idCompany, int page, Callback<List<Movie>> callback);
+    void getListMoviesCompany(int idCompany, int page, Callback<List<Movie>> callback);
 
     void getMoviesSearch(String query, int page, Callback<List<Movie>> callback);
+
+    void getKeyMovieYoutube(int idMovie, Callback<String> callback);
 }

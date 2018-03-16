@@ -4,6 +4,7 @@ import com.framgia.moviedb.data.model.Actor;
 import com.framgia.moviedb.data.model.Company;
 import com.framgia.moviedb.data.model.Genres;
 import com.framgia.moviedb.data.model.Movie;
+
 import java.util.List;
 
 /**
@@ -40,7 +41,7 @@ public class MovieReposity implements MovieDataSource {
 
     @Override
     public void getMovieDetail(int idMovie, int page, Callback<List<Company>> callBackCompany, Callback<List<Genres>> callBackGenres) {
-        mMovieDataSource.getMovieDetail(idMovie,page,callBackCompany,callBackGenres);
+        mMovieDataSource.getMovieDetail(idMovie, page, callBackCompany, callBackGenres);
     }
 
     @Override
@@ -55,21 +56,28 @@ public class MovieReposity implements MovieDataSource {
 
     @Override
     public void getListMoviesGenres(int idGenres, int page, Callback<List<Movie>> callback) {
-        mMovieDataSource.getListMoviesGenres(idGenres,page,callback);
+        mMovieDataSource.getListMoviesGenres(idGenres, page, callback);
     }
 
     @Override
     public void getListMoviesActor(int idActor, int page, Callback<List<Movie>> callback) {
-        mMovieDataSource.getListMoviesActor(idActor,page,callback);
+        mMovieDataSource.getListMoviesActor(idActor, page, callback);
     }
 
     @Override
     public void getListMoviesCompany(int idCompany, int page, Callback<List<Movie>> callback) {
-        mMovieDataSource.getListMoviesCompany(idCompany,page,callback);
+        mMovieDataSource.getListMoviesCompany(idCompany, page, callback);
     }
 
     @Override
     public void getMoviesSearch(String query, int page, Callback<List<Movie>> callback) {
-        mMovieDataSource.getMoviesSearch(query,page,callback);
+        mMovieDataSource.getMoviesSearch(query, page, callback);
     }
+
+    @Override
+    public void getKeyMovieYoutube(int idMovie, Callback<String> callback) {
+        mMovieDataSource.getKeyMovieYoutube(idMovie, callback);
+    }
+
+
 }
