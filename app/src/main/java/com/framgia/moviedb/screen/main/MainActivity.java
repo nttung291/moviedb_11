@@ -17,16 +17,15 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;;
-
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.framgia.moviedb.R;
 import com.framgia.moviedb.adapter.ViewPagerAdapter;
+import com.framgia.moviedb.screen.searchmovies.SearchMoviesActivity;
 import com.framgia.moviedb.screen.genres.GenresActivity;
-
-import static com.framgia.moviedb.screen.searchmovies.SearchMoviesActivity.getSearchIntent;
 
 /**
  * Main Screen.
@@ -135,13 +134,16 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         int id = item.getItemId();
         switch (id) {
             case R.id.nav_home:
+                Intent intentMain = new Intent(this, MainActivity.class);
+                this.startActivity(intentMain);
                 break;
             case R.id.nav_favorite:
                 Intent intentFavorite = new Intent(this, FavoriteFilmActivity.class);
                 this.startActivity(intentFavorite);
                 break;
             case R.id.nav_genres:
-                this.startActivity(new Intent(this, GenresActivity.class));
+                Intent intentGenres = new Intent(this, GenresActivity.class);
+                this.startActivity(intentGenres);
                 break;
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -163,8 +165,10 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     @Override
     public boolean onQueryTextSubmit(String query) {
+        Intent intent = new Intent(this, SearchMoviesActivity.class);
+        intent.putExtra(Constant.BUNDLE_SEARCH, query);
+        startActivity(intent);
         mSearchView.clearFocus();
-        startActivity(getSearchIntent(this, query));
         return false;
     }
 

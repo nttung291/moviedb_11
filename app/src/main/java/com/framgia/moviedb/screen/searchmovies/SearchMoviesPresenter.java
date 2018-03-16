@@ -33,11 +33,7 @@ public class SearchMoviesPresenter implements SearchMoviesContract.Presenter {
 
             @Override
             public void onGetSuccess(List<Movie> data) {
-                if (data.size() != 0) {
-                    mView.onGetMovieSuccess(data);
-                } else {
-                    mView.onNoResult();
-                }
+                mView.onGetMovieSuccess(data);
             }
 
             @Override

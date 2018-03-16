@@ -9,6 +9,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -20,11 +21,11 @@ import com.framgia.moviedb.data.model.Movie;
 import com.framgia.moviedb.screen.EndScrollListener;
 import com.framgia.moviedb.screen.LoadMoreListener;
 import com.framgia.moviedb.screen.basedisplaymovies.DisplayMoviesAdapter;
+import com.framgia.moviedb.screen.detailfilm.DetailFilmActivity;
 import com.framgia.moviedb.untils.Constant;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.List;
-import static com.framgia.moviedb.screen.detailfilm.DetailFilmActivity.getDetailIntent;
 
 /**
  * SearchMovies Screen.
@@ -43,12 +44,6 @@ public class SearchMoviesActivity extends AppCompatActivity implements SearchMov
     private EndScrollListener mEndScrollListener;
     private SearchView mSearchView;
 
-    public static Intent getSearchIntent(Context context, String query) {
-        Intent intent = new Intent(context, SearchMoviesActivity.class);
-        intent.putExtra(Constant.BUNDLE_SEARCH, query);
-        return intent;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +51,7 @@ public class SearchMoviesActivity extends AppCompatActivity implements SearchMov
         mPresenter = new SearchMoviesPresenter(this);
         mTextViewResult = findViewById(R.id.text_result_search);
         mRecyclerView = findViewById(R.id.recycler_movies_seacrh);
-        mToolbar = findViewById(R.id.toolbar_seacrh);
+        mToolbar =  findViewById(R.id.toolbar_seacrh);
         mAVLoadingIndicatorView = findViewById(R.id.av_loading_seacrh);
 
         initToolbar();
@@ -100,7 +95,11 @@ public class SearchMoviesActivity extends AppCompatActivity implements SearchMov
 
     @Override
     public void onGetMovieSuccess(List<Movie> movies) {
-        mTextViewResult.setVisibility(View.INVISIBLE);
+        if (movies.size() != 0 ){
+            mTextViewResult.setVisibility(View.INVISIBLE);
+        }else{
+            mTextViewResult.setVisibility(View.VISIBLE);
+        }
         mPresenter.setPageIfLoadSuccess();
         mDisplayMoviesAdapter.replaceData(movies);
         hideIndicator();
@@ -108,11 +107,6 @@ public class SearchMoviesActivity extends AppCompatActivity implements SearchMov
 
     @Override
     public void onGetMovieFailure(String message) {
-    }
-
-    @Override
-    public void onNoResult() {
-        mTextViewResult.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -137,14 +131,16 @@ public class SearchMoviesActivity extends AppCompatActivity implements SearchMov
 
     @Override
     public void onItemClicked(Movie movie) {
-        this.startActivity(getDetailIntent(this, movie));
+        Intent intent = new Intent(this, DetailFilmActivity.class);
+        intent.putExtra(Constant.BUNDLE_ID_MOVIE, movie); //Optional parameters
+        this.startActivity(intent);
     }
 
     @Override
     public boolean onQueryTextSubmit(String query) {
         showIndicator();
         mDisplayMoviesAdapter.clearData();
-        mPresenter.getData(query, Constant.DEFAULT_PAGE);
+        mPresenter.getData(query,Constant.DEFAULT_PAGE);
         mSearchView.clearFocus();
         return false;
     }

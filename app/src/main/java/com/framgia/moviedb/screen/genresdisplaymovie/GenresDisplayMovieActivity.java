@@ -16,12 +16,6 @@ import com.framgia.moviedb.untils.Constant;
 public class GenresDisplayMovieActivity extends DisplayMoviesActivity {
     private Genres mGenres;
 
-    public static Intent getGenresIntent(Context context, Genres genres) {
-        Intent intent = new Intent(context, GenresDisplayMovieActivity.class);
-        intent.putExtra(Constant.EXTRA_GENRES, genres);
-        return intent;
-    }
-
     @Override
     protected DisplayMoviesContract.Presenter getPresenter() {
         MovieReposity reposity = new MovieReposity(new MovieRemoteDataSource());
@@ -37,5 +31,11 @@ public class GenresDisplayMovieActivity extends DisplayMoviesActivity {
     @Override
     public String initToolBarTitle() {
         return mGenres.getName();
+    }
+
+    public static Intent getGenresIntent(Context context, Genres genres) {
+        Intent intent = new Intent(context, GenresDisplayMovieActivity.class);
+        intent.putExtra(Constant.EXTRA_GENRES, genres);
+        return intent;
     }
 }

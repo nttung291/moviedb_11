@@ -16,12 +16,6 @@ import com.framgia.moviedb.untils.Constant;
 public class ActorDisplayMoviesActivity extends DisplayMoviesActivity {
     private Actor mActor;
 
-    public static Intent getActorIntent(Context context, Actor actor) {
-        Intent intent = new Intent(context, ActorDisplayMoviesActivity.class);
-        intent.putExtra(Constant.EXTRA_ACTOR, actor);
-        return intent;
-    }
-
     @Override
     protected DisplayMoviesContract.Presenter getPresenter() {
         MovieReposity reposity = new MovieReposity(new MovieRemoteDataSource());
@@ -37,5 +31,11 @@ public class ActorDisplayMoviesActivity extends DisplayMoviesActivity {
     @Override
     public String initToolBarTitle() {
         return mActor.getName();
+    }
+
+    public static Intent getActorIntent(Context context, Actor actor) {
+        Intent intent = new Intent(context, ActorDisplayMoviesActivity.class);
+        intent.putExtra(Constant.EXTRA_ACTOR, actor);
+        return intent;
     }
 }
