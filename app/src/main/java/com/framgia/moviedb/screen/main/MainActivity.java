@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.framgia.moviedb.screen.favoritefilm.FavoriteFilmActivity;
 import com.framgia.moviedb.untils.Constant;
 
 import android.support.design.widget.NavigationView;
@@ -137,6 +138,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
             case R.id.nav_home:
                 break;
             case R.id.nav_favorite:
+                this.startActivity(new Intent(this, FavoriteFilmActivity.class));
                 break;
             case R.id.nav_genres:
                 this.startActivity(new Intent(this, GenresActivity.class));

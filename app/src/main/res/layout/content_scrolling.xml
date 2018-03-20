@@ -33,15 +33,43 @@
             app:layout_constraintStart_toEndOf="@id/image_overview"
             app:layout_constraintTop_toTopOf="parent" />
         <TextView
+            android:id="@+id/text_date_detail"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_3"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textColor="@color/color_outrageous_orange"
+            android:textStyle="italic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_rate_detail" />
+        <TextView
+            android:id="@+id/text_rate_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_18"
+            android:textColor="@color/color_outrageous_orange"
+            android:textStyle="italic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_overview" />
+        <TextView
             android:id="@+id/text_overview_detail"
             android:layout_width="@dimen/dp_0"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_18"
+            android:layout_marginTop="@dimen/dp_3"
             app:layout_constraintEnd_toEndOf="parent"
             android:textColor="@color/color_white"
             android:textStyle="italic"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_overview" />
+            app:layout_constraintTop_toBottomOf="@+id/text_date_detail" />
+        <ImageView
+            android:id="@+id/image_rate_detail"
+            android:layout_width="@dimen/dp_18"
+            android:layout_height="@dimen/dp_18"
+            android:layout_marginTop="@dimen/dp_18"
+            android:src="@drawable/ic_star"
+            android:layout_marginLeft="@dimen/dp_3"
+            app:layout_constraintLeft_toRightOf="@id/text_rate_detail"
+            app:layout_constraintTop_toBottomOf="@+id/text_overview"/>
         <View
             android:id="@+id/view_devider"
             android:layout_width="match_parent"

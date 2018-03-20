@@ -38,7 +38,12 @@
         <activity
             android:name=".screen.searchmovies.SearchMoviesActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".screen.favoritefilm.FavoriteFilmActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".screen.video.VideoActivity"
+            android:theme="@style/AppTheme.NoActionBar"  />
     </application>
 
 </manifest>
-

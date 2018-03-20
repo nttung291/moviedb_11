@@ -3,6 +3,7 @@ package com.framgia.moviedb.screen.detailfilm;
 import com.framgia.moviedb.data.model.Actor;
 import com.framgia.moviedb.data.model.Company;
 import com.framgia.moviedb.data.model.Genres;
+import com.framgia.moviedb.data.model.Movie;
 import com.framgia.moviedb.screen.BasePresenter;
 
 import java.util.List;
@@ -27,9 +28,18 @@ interface DetailFilmContract {
 
         void onGetActorFailure(String message);
 
-        void showIndicator();
+        void onMovieExistFavorite();
 
-        void hideIndicator();
+        void onMovieNotExistFavorite();
+
+        void onAddFavoriteSuccess();
+
+        void onAddFavoriteFailed();
+
+        void onRemoveFavoriteSuccess();
+
+        void onRemoveFavoriteFailed();
+
     }
 
     /**
@@ -37,5 +47,11 @@ interface DetailFilmContract {
      */
     interface Presenter extends BasePresenter<View> {
         void getData();
+
+        void checkExistFavorite();
+
+        void removeFavorite(Movie movie);
+
+        void addFavorite(Movie movie);
     }
 }

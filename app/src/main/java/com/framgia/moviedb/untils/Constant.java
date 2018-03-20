@@ -44,6 +44,8 @@ public final class Constant {
     public static final String QUERY_PART = "query";
     public static final String SPACE = "%20";
     public static final String IMDB_RATE = " IMDb";
+    public static final String REALEASE_DATE = "Released Date : ";
+    public static final String RATE_IMDB = "Rate IMDb : ";
     public static final String IMG_URL = "https://image.tmdb.org/t/p/w300_and_h450_bestv2/";
     public static final int CONNECT_TIME_OUT = 10000;
     public static final int READ_TIME_OUT = 15000;
